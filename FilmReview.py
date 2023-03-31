@@ -25,7 +25,7 @@ def getFilmReview(film):
         driver = webdriver.Chrome(chromedriver)
         # 打开网页
         driver.get("https://search.douban.com/movie/subject_search?search_text={}".format(film))
-        time.sleep(5)
+        time.sleep(2)
         link=driver.find_element_by_class_name('title-text')
         url=link.get_attribute('href')
         films=link.text
@@ -38,6 +38,7 @@ def getFilmReview(film):
             info = codecs.open(baiduFile, 'a', 'utf-8')
 
         for k in range(50):
+            time.sleep(1)
             driver.get(url+"comments?start={}".format(k))
             try:
                 # 自动搜索
@@ -45,8 +46,8 @@ def getFilmReview(film):
                     elem = driver.find_element_by_xpath('//*[@id="comments"]/div[{}]/div[2]/p/span'.format(i + 1))
                     print(elem.text)
                     info.writelines(elem.text + '\r\n')
-            except:
-                pass
+            except Exception as e:
+                print('Error:', e)
 
     except Exception as e:
         print('Error:', e)
