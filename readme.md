@@ -9,3 +9,9 @@
 
 <img src="https://gcore.jsdelivr.net/gh/wbzyo/ziproject/%E8%BF%87%E6%8A%8A%E7%98%BEs.png" alt="后" style="zoom:50%;" />
 
+2024：后续更新加入mask蒙版，生成任意形状的词云
+
+![](https://cdn.jsdelivr.net/gh/wbzyo/ziproject/%E8%BF%87%E6%8A%8A%E7%98%BE2.png)
+
+![](https://cdn.jsdelivr.net/gh/wbzyo/ziproject/过把瘾1.png)
+

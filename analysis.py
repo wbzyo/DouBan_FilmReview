@@ -5,13 +5,18 @@ import jieba  # 中文分词
 import jieba.analyse
 import wordcloud  # 绘制词云
 import os
+import numpy as np
+from PIL import Image
 # 显示数据
 def analysis(film):
     path=os.path.join(os.getcwd(),'DouBan_FilmReviews\\'+film+'.txt')
+    # 词云mask
+    mask_img="Binary_image_p2892190808.png"
+    mask = np.array(Image.open(mask_img)) if os.path.isfile(mask_img) else None
 
     f = open(path, encoding='utf-8')
     txt = f.read()
-    #设置禁用词
+    #设置禁/停用词
     stopword=open('stopwords.txt', encoding='utf-8')
     stopwords=stopword.read()
 
@@ -20,22 +25,18 @@ def analysis(film):
     txt_string=[]
     txt_string += [word for word in txt_list if word not in stopwords]
 
-
     string = ' '.join(txt_string)
     print(string)
 
-    # 很据得到的弹幕数据绘制词云图
-    # mk = imageio.imread(r'图片路径')
 
-    w = wordcloud.WordCloud(width=1000,
-                            height=700,
-                            background_color='white',
+    w = wordcloud.WordCloud(
+                            background_color="white",
                             font_path='C:/Windows/Fonts/simsun.ttc',
-                            # mask=mk,
-                            scale=15,
+                            mask=mask ,
+                            # scale=15,
                             stopwords={' '},
-                            contour_width=5,
-                            contour_color='red'
+                            contour_width=2,
+                            contour_color='steelblue'
                             )
 
     w.generate(string)
@@ -43,4 +44,4 @@ def analysis(film):
     print(film,'图片生成成功！')
 
 if __name__ == '__main__':
-    analysis()
+    analysis("过把瘾")
